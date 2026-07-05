@@ -15,15 +15,16 @@ const libConfig = {
   ...commonConfig,
   build: {
     lib: {
-      entry: resolve(__dirname, './src'),
+      entry: resolve(__dirname, './src/index.tsx'),
       name: 'nt-modal',
       fileName: (format:any) => `nt-modal.${format}.js`
     },
     rollupOptions: {
-      external: ["react"],
+      external: ["react", "react-dom"],
       output: {
         globals: {
-          vue: "React",
+          react: "React",
+          'react-dom': 'ReactDom'
         },
         // Use `index.css` for css
         assetFileNames: (assetInfo:any) => {
@@ -35,24 +36,23 @@ const libConfig = {
   }
 }
 
-const demoConfig = defineConfig({
+const demoConfig = {
   ...commonConfig,
   root: "./demo",
   base: process.env.NODE_ENV === 'production' ? '/react-nt-modal/' : '/',
   server: {
     port: 5910
   }
-})
+}
 
 // https://vite.dev/config/
-export default defineConfig(({ command }) => {
-  const executionMode = process.env.MODE || "lib";
-
-  const mode = command === 'build' ? "production" : "development";
+export default defineConfig(({ command, mode }) => {
+  const executionMode = mode || "lib";
+  const modeValue = command === 'build' ? "production" : "development";
 
   if(executionMode === 'demo') {
-    return { ...demoConfig, mode }
+    return { ...demoConfig, modeValue }
   } else {
-    return { ...libConfig, mode }
+    return { ...libConfig, modeValue }
   }
 })

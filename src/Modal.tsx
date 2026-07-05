@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useModal } from './ModalProvider.tsx'
 import type { ModalEntry, ModalContentProps } from './types.ts'
 
-const TRANSITION_MS = 500
+const TRANSITION_MS = 250
 
 export default function Modal({ id, comp, props, options }: ModalEntry) {
   const { close } = useModal()

@@ -4,10 +4,10 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "MODE=demo vite",
+    "dev": "vite --mode=demo",
     "build": "npm run build:code",
-    "build:code": "MODE=lib tsc -b && vite build",
-    "build:demo": "MODE=demo tsc -b && vite build",
+    "build:code": "tsc -b && vite build --mode=lib",
+    "build:demo": "tsc -b && vite build --mode=demo",
     "lint": "eslint .",
     "preview": "vite preview"
   },

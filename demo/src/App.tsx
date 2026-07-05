@@ -84,22 +84,23 @@ function Demo() {
 
       <div className="detail mt-10">
         <div className="header">
-          <div className="border large">Base</div>
+          <div className="bold large">Base</div>
           <p><code>Modal</code> 과 <code>Confirm</code>의 구분은 show()의 param 중 comp에 의해 결정됩니다. 'confirm'으로 설정 시 지정된 confirm template이 나타나고 사용자 컴포넌트로 설정 시 해당 컴포넌트가 동적으로 적용 됩니다. </p>
           <p>confirm 실행 시 컴펌 제목, 내용, 확인, 취소 버튼 텍스트를 지정 할 수 있습니다.</p>
-        </div>
-        <div className="be-input">
-          <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="title" />
         </div>
         <div className="be-segment border">
           <div className="be-form">
             <div className="header mb-2">
-              <div className="title">직접 모달 타이틀과 설명을 입력해보세요.</div>
+              <div className="">직접 모달 타이틀과 설명을 입력해보세요.</div>
             </div>
-            <div className="fields">
+            <div className="field">
+              <label>Title</label>
               <div className="be-input">
                 <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="title" />
               </div>
+            </div>
+            <div className="field">
+              <label>Description</label>
               <div className="be-input">
                 <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="description" />
               </div>
@@ -113,7 +114,7 @@ function Demo() {
       </div>
       <div className="detail mt-10">
         <div className="header">
-          <div className="border large">Use stack</div>
+          <div className="bold large">Use stack</div>
           <p><code>useStack: true</code> 시 이중 모달을 허용합니다. 모달 내부에서 다른 모달을 호출 할 수 있습니다. 허용 하지 않을 경우 마지막에 실행한 모달만 표시됩니다. </p>
         </div>
         <div className="be-segment border">
@@ -129,7 +130,7 @@ function Demo() {
       </div>
       <div className="detail mt-10">
         <div className="header">
-          <div className="border large">Click to close</div>
+          <div className="bold large">Click to close</div>
           <p>모달 영역 밖(dimmed 영역)을 클릭하여 창을 닫을 수 있도록 설정합니다.</p>
         </div>
         <div className="be-segment border">
@@ -145,8 +146,8 @@ function Demo() {
       </div>
       <div className="detail mt-10">
         <div className="header">
-          <div className="border large">Press ESC to close</div>
-          <p><span className="be-tag kbd esc">ESC</span>로 창을 닫을 수 있도록 설정합니다.</p>
+          <div className="bold large">Press ESC to close</div>
+          <p><span className="be-tag kbd esc">ESC</span> 로 창을 닫을 수 있도록 설정합니다.</p>
         </div>
         <div className="be-segment border">
           <div className="contents">
