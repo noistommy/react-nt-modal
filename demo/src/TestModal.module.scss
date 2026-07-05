@@ -1,0 +1,26 @@
+.modal {
+  width: 500px;
+  background-color: var(--bgc);
+  color: var(--txt);
+  .modalContents {
+    position: relative;
+    max-height: 500px;
+    overflow-y: auto;
+    .title {
+      margin-bottom: 1rem;
+    }
+    .closeBtn {
+      position: absolute;
+      padding: 20px;
+      top: 0;
+      right: 0;
+    }
+  }
+  .modalFooter {
+    display: flex;
+    justify-content: end;
+    .btnSet.add {
+      flex-grow: 1;
+    }
+  }
+}
