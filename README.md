@@ -13,6 +13,12 @@
 
 ---
 
+## Demo
+
+[react-nt-modal](https://noistommy.github.io/react-nt-modal) demo page.
+
+
+
 ## Installation
 
 ```
