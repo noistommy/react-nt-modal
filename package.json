@@ -9,7 +9,8 @@
     "build:code": "tsc -b && vite build --mode=lib",
     "build:demo": "tsc -b && vite build --mode=demo",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "docs": "rm -rf docs && cp -rf demo/dist docs"
   },
   "main": "./dist/nt-modal.umd.js",
   "module": "./dist/nt-modal.es.js",
