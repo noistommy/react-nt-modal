@@ -9,7 +9,7 @@ export default function Modal({ id, comp, props, options }: ModalEntry) {
   const [visible, setVisible] = useState(false)
   const [closing, setClosing] = useState(false)
 
-  const Content = comp as React.ComponentType<ModalContentProps & Record<string, unknown>>
+  const Content = comp as unknown as React.ComponentType<ModalContentProps & Record<string, unknown>>
 
   // mirrors onMounted -> nextTick(() => isVisible.value = true)
   useEffect(() => {

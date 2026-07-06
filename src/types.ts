@@ -32,7 +32,7 @@ export interface ShowModalArgs<P = Record<string, unknown>> {
 
 export interface ModalEntry {
   id: number
-  comp: ModalComponent<any> | 'confirm'
+  comp: ModalComponent<ReactNode> | 'confirm'
   props: Record<string, unknown>
   options: ModalOptions
 }

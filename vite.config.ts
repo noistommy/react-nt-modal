@@ -15,7 +15,7 @@ const libConfig = {
   ...commonConfig,
   build: {
     lib: {
-      entry: resolve(__dirname, './src/index.tsx'),
+      entry: resolve(__dirname, './src'),
       name: 'nt-modal',
       fileName: (format:any) => `nt-modal.${format}.js`
     },
@@ -27,9 +27,9 @@ const libConfig = {
           'react-dom': 'ReactDom'
         },
         // Use `index.css` for css
-        assetFileNames: (assetInfo:any) => {
-          if (assetInfo.name == "style.css") return "nt-modal.css"
-          return assetInfo.name
+        assetFileNames: () => {
+          // if (assetInfo.name == "style.css") return "nt-modal.css"
+          return "nt-modal.css"
         }
       }
     }

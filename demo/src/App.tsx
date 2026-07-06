@@ -4,38 +4,39 @@ import TestModal from './TestModal.tsx'
 
 function Header() {
 
-  const [theme, setTheme] = useState<'light' | 'dark' | 'system'>('system')
+  const themeValue = sessionStorage.getItem('theme-mode') as 'light' | 'dark' | null
+  const [theme, setTheme] = useState<'light' | 'dark' | 'system'>(themeValue || 'system')
+
 
   const selectTheme = (mode: 'light' | 'dark' | 'system') => {
     const html = document.documentElement;
-    setTheme(mode)
-
     html.className = ''
     html.classList.add(`${mode}-mode`);
-
     sessionStorage.setItem('theme-mode', mode)
   }
 
   useEffect(() => {
-    const saved = sessionStorage.getItem('theme-mode') as 'light' | 'dark' | 'system' | null
-    if (saved) {
-      selectTheme(saved)
-    }
-  }, [])
+    selectTheme(theme)
+  }, [theme])
   return (
-    <header>
-      <div className="menu-wrapper">
-        <nav className="be flex end gap-1 pd-2">
+    <header style={{marginTop: '100px'}}>
+      <div className="menu-wrapper" style = {{
+        position: 'absolute',
+        top: 0,
+        right: 0,
+      }}>
+        <nav className="be flex end gap-1 p-4">
           <li>
             <div className="be-buttons">
-              <div className={`be-button icon ${theme === 'light' ? 'selected' : ''}`} onClick={() => selectTheme('light')}><i className="xi-sun" /></div>
-              <div className={`be-button icon ${theme === 'dark' ? 'selected' : ''}`} onClick={() => selectTheme('dark')}><i className="xi-moon" /></div>
-              <div className={`be-button icon ${theme === 'system' ? 'selected' : ''}`} onClick={() => selectTheme('system')}><i className="xi-desktop" /></div>
+              <div className={`be-button icon ${theme === 'light' ? 'selected' : ''}`} onClick={() => setTheme('light')}><i className="xi-sun" /></div>
+              <div className={`be-button icon ${theme === 'dark' ? 'selected' : ''}`} onClick={() => setTheme('dark')}><i className="xi-moon" /></div>
+              <div className={`be-button icon ${theme === 'system' ? 'selected' : ''}`} onClick={() => setTheme('system')}><i className="xi-desktop" /></div>
             </div>
           </li>
           <li>
             <div className="be-button icon">
               <i className="xi-github"></i>
+              <a href="https://github.com/noistommy/react-nt-modal.git" className="link" target="_blank"></a>
             </div>
           </li>
         </nav>
@@ -57,8 +58,8 @@ function Demo() {
   const [clickToClose, setClickToClose] = useState(false)
   const [escapeToClose, setEscapeToClose] = useState(false)
   const [title, setTitle] = useState('modal title')
-  const [description, setDescription] = useState('This is modal test')
-
+  const lorem = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus tenetur ea mollitia cupiditate accusantium earum nulla. Temporibus, expedita. Facere, consectetur. Amet iure perferendis vel ipsum, animi dolorum et ratione repellat?'
+  const [description, setDescription] = useState(lorem)
   const showModal = () => {
     show({
       comp: TestModal,
@@ -70,7 +71,7 @@ function Demo() {
   const showConfirm = () => {
     show({
       comp: 'confirm',
-      props: { title, description, pText: '확인', nText: '취소' },
+      props: { title: 'Confirm', description: 'Is it OK?', pText: '확인', nText: '취소', result: () => (console.log('ok!')) },
       options: { useStack: stack, clickToClose, escapeToClose },
     })
   }
@@ -90,19 +91,19 @@ function Demo() {
         </div>
         <div className="be-segment border">
           <div className="be-form">
-            <div className="header mb-2">
+            <div className="header mb-8">
               <div className="">직접 모달 타이틀과 설명을 입력해보세요.</div>
             </div>
             <div className="field">
               <label>Title</label>
-              <div className="be-input">
+              <div className="be-input fluid">
                 <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="title" />
               </div>
             </div>
             <div className="field">
               <label>Description</label>
-              <div className="be-input">
-                <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="description" />
+              <div className="be-input fluid">
+                <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="description" />
               </div>
             </div>
           </div>
@@ -159,11 +160,7 @@ function Demo() {
             <div className="be-button" onClick={showModal}>Open Modal</div>
           </div>
         </div>
-      </div>
-
-      
-      
-      
+      </div> 
     </div>
   )
 }

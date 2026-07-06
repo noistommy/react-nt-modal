@@ -1,26 +1,31 @@
 # react-nt-modal
 
-`vue-nt-modal`(https://github.com/noistommy/vue-nt-modal)을 React + TypeScript로 그대로 포팅한 버전입니다.
-동일한 클래스명(`nt-modal`, `nt-modal-container`, `nt-button` 등)과 CSS 구조를 사용하므로
-기존 `nt-modal.scss` 스타일이나 커스텀 테마를 그대로 재사용할 수 있습니다.
+![Static Badge](https://img.shields.io/badge/react-only-%234FC08D?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/javascript-%23F7DF1E?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/html-%23E34F26?style=for-the-badge&logo=html)
+![Static Badge](https://img.shields.io/badge/sass-%23CC6699?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/vite-bundler-%23646CFF?style=for-the-badge)
 
-## 설치
+
+`react-nt-modal`은 react용 모달 시스템 모듈입니다. react에서 지원하는 `portal` 기능을 활용 하여 어플리케이션 외부에 사용자가 지정한 컴포넌트(컨텐츠)가 표시 되도록 합니다. 어플리케이션 외부에 생성하여 내부 레이어 시스템의 영향을 주지 않도록 구현하고 전역으로 동작하게 하여 사용자가 어플리케이션 어디에서든 최상위 레이어에 모달을 표시할 수 있도록 합니다. 기본적인 구조 (헤더, 닫기 버튼, 기본 버튼)를 제공하며 사용자는 모달 컨텐츠 부분만 component로 구현하여 import 시키면 됩니다. 또한 내부에 comfirm 처리가 가능한 component를 갖고 있어 간단하게 confirm 모달을 표시할수있도록 합니다.
+
+창 닫는 기능 관련 옵션을 지정할 수 있으며 옵션에 따라 background(아무곳)를`click` 하거나 `esc`버튼으로 창을 닫을 수 있습니다. 또한 모달 내부에서 모달 호출이 가능하도록 하여 여러개의 모달을 순차적으로 열고 닫을 수 있습니다.
+
+---
+
+## Installation
 
 ```
-npm install react react-dom
-npm install -D typescript @types/react @types/react-dom
+npm install react-nt-modal
 ```
-(별도 런타임 의존성 없음 — mitt 이벤트버스는 React Context/state로 대체했습니다)
 
-CSS를 번들러 없이 TS로만 typecheck 하는 경우, `src/env.d.ts`의
-`declare module '*.css'` 선언이 필요합니다 (Vite/CRA 등 대부분의 번들러는 이미 자체 제공하므로 중복이어도 무해합니다).
 
-## 사용법
+## Usage
 
-### 1. Provider로 감싸기 (Vue의 `app.use(NtModal, options)`에 대응)
+### 1. Provider로 감싸기 
 
 ```jsx
-import { ModalProvider } from './react-nt-modal/src'
+import { ModalProvider } from 'react-nt-modal'
 
 export default function App() {
   return (
@@ -31,10 +36,10 @@ export default function App() {
 }
 ```
 
-### 2. 모달 열기 (`inject('$ntModal')` → `useModal()`)
+### 2. 모달 열기
 
 ```tsx
-import { useModal, type ModalContentProps } from './react-nt-modal/src'
+import { useModal, type ModalContentProps } from 'react-nt-modal'
 import MyModalContent, { type MyModalContentProps } from './MyModalContent'
 
 function SomeComponent() {
@@ -52,10 +57,10 @@ function SomeComponent() {
 }
 ```
 
-### 3. 컨텐츠 컴포넌트에서 닫기 (Vue의 `$emit('close')` → `onClose` prop)
+### 3. 컨텐츠 컴포넌트에서 닫기
 
 ```tsx
-import type { ModalContentProps } from './react-nt-modal/src'
+import { useModal, type ModalContentProps } from 'react-nt-modal'
 
 export interface MyModalContentProps {
   title: string
@@ -68,12 +73,16 @@ function MyModalContent({
   useHeader,
   title,
 }: ModalContentProps & MyModalContentProps) {
+  const { close } = useModal()
+
   return (
     <div className="modal">
       {useHeader && header /* NtModal이 자동 생성한 title + close 버튼 */}
       <div className="modal-contents">...</div>
       <div className="modal-footer">
         <button className="nt-button text" onClick={onClose}>취소</button>
+        // or
+        <button className="nt-button text" onClick={close}>취소</button>
       </div>
     </div>
   )
@@ -83,46 +92,15 @@ function MyModalContent({
 `ModalContentProps`는 모든 컨텐츠 컴포넌트가 자동으로 받는 `modalId`, `onClose`, `header`를
 정의합니다. 여기에 자신의 컴포넌트 전용 props 타입을 `&`로 합쳐서 사용하세요.
 
-## Vue → React 매핑
+---
 
-| vue-nt-modal | react-nt-modal | 비고 |
-|---|---|---|
-| `app.use(NtModal, options)` | `<ModalProvider options={...}>` | 전역 설정 |
-| `inject('$ntModal')` | `useModal()` | show / close / closeAll |
-| `mitt` 이벤트버스 | React Context + `useState` | 별도 의존성 제거 |
-| `<teleport to="body">` | `createPortal(..., document.body)` | 동일 동작 |
-| `<component :is="compContents">` | `<Content {...props} />` (JSX에서 컴포넌트를 변수로 렌더) | |
-| `<slot name="header">` | `header` prop (JSX 엘리먼트) | 컨텐츠 컴포넌트가 `useHeader` 조건에 따라 직접 렌더 |
-| `$emit('close')` | `onClose` prop (콜백) | |
-| `modal-id` prop | `modalId` prop | |
-| `<transition name="fade">` | CSS 클래스 토글(`nt-modal-fade-enter-active` / `-exit-active`) + `setTimeout`으로 unmount 지연 | React엔 내장 트랜지션 컴포넌트가 없어 수동 구현 |
-| `useStack` (스택형 중첩 모달) | 동일 | 배열에 push vs 단일 교체 |
-| `clickToClose` / `escapeToClose` | 동일 | |
-| `offset` (스택 시 카드 밀림 효과) | 동일 (`--offset` CSS 변수) | |
-| `NtConfirm.vue` | `Confirm.jsx` | 내장 확인창, `comp: 'confirm'`로 호출 |
+## Properties
 
-## 원본과 달라진 점 (개선)
+* **useStack**: _boolean_ ▶︎ `true`    
+Setting use multiple modal.
 
-- **`close(id)` 동작**: 원본은 `id` 인자를 받지만 실제로는 항상 배열의 마지막 요소를 pop합니다(스택이 아닌 경우 문제 없지만, 특정 모달만 골라 닫고 싶을 때는 의도대로 동작하지 않음). React 버전은 `id`로 정확히 해당 모달만 제거합니다. 인자 없이 호출하면 원본과 동일하게 마지막 모달을 닫습니다.
-- **닫힘 트랜지션**: 원본은 Vue의 `<transition>`이 언마운트를 자동으로 지연시켜주지만, React에는 그런 기능이 없어 `setTimeout`으로 애니메이션 시간(500ms)만큼 실제 제거를 지연시켰습니다.
+* **clickToClose**: _boolean_ ▶︎ `true`    
+Setting close by click on the background.
 
-## 파일 구조
-
-```
-react-nt-modal/
-├── tsconfig.json           # 권장 컴파일러 옵션 (strict 포함)
-├── package.json
-├── src/
-│   ├── types.ts            # ModalOptions, ModalContentProps, ShowModalArgs 등 공용 타입
-│   ├── ModalProvider.tsx   # Context, Portal 컨테이너, useModal 훅
-│   ├── Modal.tsx           # 개별 모달 래퍼 (transition, ESC, click-outside, offset)
-│   ├── Confirm.tsx         # 내장 confirm 다이얼로그
-│   ├── nt-modal.css        # 원본 scss를 포팅한 스타일
-│   ├── env.d.ts            # `*.css` 모듈 선언 (번들러 없이 typecheck 시 필요)
-│   └── index.ts            # barrel export (타입 re-export 포함)
-└── example/
-    ├── App.tsx             # 데모 (원본 HelloWorld.vue 대응)
-    └── TestModal.tsx       # 예시 컨텐츠 컴포넌트 (원본 TestModal.vue 대응)
-```
-
-`npx tsc --noEmit`로 타입 오류 없이 컴파일되는 것을 확인했습니다.
+* **escapeToClose**: _boolean_ ▶︎ `true`   
+Setting close by press the `ESC` button.

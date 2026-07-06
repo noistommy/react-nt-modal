@@ -1,8 +1,9 @@
 import { useModal } from '../../src/index.js'
+import { useState } from 'react'
 import type { ModalContentProps } from '../../src/index.js'
 import style from './TestModal.module.scss'
 const LOREM =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in odio quis velit vulputate luctus.'
+  'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error minima ea nihil, consequatur iusto tempore, odio modi et ab deleniti perferendis reprehenderit at possimus beatae consequuntur harum? Magnam, iste beatae.'
 
 export interface TestModalProps {
   title: string
@@ -24,15 +25,16 @@ export default function TestModal({
   useStack,
 }: ModalContentProps & TestModalProps) {
   const { show } = useModal()
+  const [h, setH] = useState(useHeader)
 
   const addModal = () => {
     show({
       comp: TestModal,
       props: {
-        title: '모달 테스트',
-        description: '모달 테스트 입니다.',
-        pText: '저장',
-        useHeader: true,
+        title: 'New Modal',
+        description: LOREM,
+        pText: 'Save',
+        useHeader: h,
         useStack,
       },
       options: { useStack },
@@ -54,29 +56,26 @@ export default function TestModal({
 
   return (
     <div className={`${style.modal} modal`}>
-      {useHeader && header}
-
+      {useHeader ? header : (
+        <div className="title h5 p-5">{title}(user custom title)</div>
+      )}
       <div className={`${style.modalContents} modalContents modal-contents`}>
         <div className={`${style.contents} contents`}>
-          {!useHeader && (
-            <>
-              <div className="h3 title">{title}</div>
-              <div className="close-btn" onClick={onClose}>
-                <i className="xi-close" />
-              </div>
-            </>
-          )}
           <div>{description}</div>
-          <div>{LOREM}</div>
+          <hr />
+          <div className="be flex gap-2 pt-5">
+            <label className="be-switch slide inside round">
+              <input type="checkbox" checked={h} onChange={() => setH(!h)} />
+              <span className="switch"></span>
+            </label>
+            <label>{h ? 'Use' : 'No'} Header</label>
+            <div className={`${style.btnSetAdd} btnSet add btn-set add`}>
+              <button className="be-button red compact" onClick={addModal} disabled={!useStack}>New Modal</button>
+            </div>
+          </div>
         </div>
       </div>
-
       <div className={`${style.modalFooter} modalFooter modal-footer`}>
-        {useStack && (
-          <div className={`${style.btnSetAdd} btnSet add btn-set add`}>
-            <button className="nt-button" onClick={addModal}>New</button>
-          </div>
-        )}
         <div className={`${style.btnSet} btnSet`}>
           <button className="nt-button text" onClick={onClose}>{nText}</button>
           <button className="nt-button primary" onClick={addConfirm}>{pText}</button>
