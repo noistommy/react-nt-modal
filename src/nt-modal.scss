@@ -31,10 +31,8 @@ body .nt-modals {
       overflow: hidden;
       
       position: absolute;
-      top: calc(50% - var(--offset));
-      left: calc(50% - var(--offset));
-      // top: 50%;
-      // left: 50%;
+      top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
       padding: 20px 30px;
       .modal {
@@ -99,10 +97,10 @@ body .nt-modals {
         }
       }
     }
-    &:first-child {
+    &:last-child {
       .nt-modal-background {
-        background-color: rgba(0, 0, 0, 0.6);
-        backdrop-filter: blur(10px);
+        background-color: rgba(0, 0, 0, 0.16);
+        backdrop-filter: blur(5px);
       }
     }
   }
@@ -146,6 +144,9 @@ body .nt-modals {
     &.text {
       color: #909090;
       background-color: transparent;
+      &:hover {
+        font-weight: bold;
+      }
     }
 }
 

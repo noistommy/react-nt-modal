@@ -34,9 +34,16 @@ function Header() {
             </div>
           </li>
           <li>
-            <div className="be-button icon">
-              <i className="xi-github"></i>
-              <a href="https://github.com/noistommy/react-nt-modal.git" className="link" target="_blank"></a>
+            <div className="be-buttons">
+              <div className="be-button icon">
+                <i className="xi-github"></i>
+                <a href="https://github.com/noistommy/react-nt-modal.git" className="link" target="_blank"></a>
+              </div>
+              <div className="be-button icon">
+                <i className="xi-package"></i>
+                <a href="https://www.npmjs.com/package/react-nt-modal" className="link" target="_blank"></a>
+              </div>
+
             </div>
           </li>
         </nav>
@@ -55,8 +62,8 @@ function Header() {
 function Demo() {
   const { show } = useModal()
   const [stack, setStack] = useState(true)
-  const [clickToClose, setClickToClose] = useState(false)
-  const [escapeToClose, setEscapeToClose] = useState(false)
+  const [clickToClose, setClickToClose] = useState(true)
+  const [escapeToClose, setEscapeToClose] = useState(true)
   const [title, setTitle] = useState('modal title')
   const lorem = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus tenetur ea mollitia cupiditate accusantium earum nulla. Temporibus, expedita. Facere, consectetur. Amet iure perferendis vel ipsum, animi dolorum et ratione repellat?'
   const [description, setDescription] = useState(lorem)
@@ -167,7 +174,7 @@ function Demo() {
 
 export default function App() {
   return (
-    <ModalProvider options={{ useStack: true, clickToClose: false, escapeToClose: false, offset: 20 }}>
+    <ModalProvider options={{ useStack: true, clickToClose: false, escapeToClose: false }}>
       <Header />
       <Demo />
     </ModalProvider>

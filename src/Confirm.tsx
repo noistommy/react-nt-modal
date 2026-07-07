@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import { useModal } from './ModalProvider.tsx'
 import type { ConfirmProps, ModalOptions } from './types.ts'
 
@@ -10,17 +9,10 @@ interface ConfirmComponentProps {
   options: ModalOptions
 }
 
-export default function Confirm({ id, props, options }: ConfirmComponentProps) {
+export default function Confirm({ id, props }: ConfirmComponentProps) {
   const { close, closeAll } = useModal()
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    const raf = requestAnimationFrame(() => setVisible(true))
-    return () => cancelAnimationFrame(raf)
-  }, [])
 
   const dismiss = (afterClose: () => void) => {
-    setVisible(false)
     window.setTimeout(() => {
       afterClose()
     }, TRANSITION_MS)
@@ -35,15 +27,8 @@ export default function Confirm({ id, props, options }: ConfirmComponentProps) {
     dismiss(closeAll)
   }
 
-  const offsetStyle = {
-    '--offset': `${(id % 5) * (options?.offset ?? 20)}px`,
-  } as React.CSSProperties
-
   return (
-    <div
-      className={`nt-confirm nt-modal-fade-${visible ? 'enter' : 'exit'}-active`}
-      style={offsetStyle}
-    >
+    <div className={`nt-confirm`}>
       <div className="nt-modal-background" />
       <div className="nt-modal-container">
         <div className="modal confirm">

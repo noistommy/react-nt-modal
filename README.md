@@ -11,7 +11,7 @@
 
 창 닫는 기능 관련 옵션을 지정할 수 있으며 옵션에 따라 background(아무곳)를`click` 하거나 `esc`버튼으로 창을 닫을 수 있습니다. 또한 모달 내부에서 모달 호출이 가능하도록 하여 여러개의 모달을 순차적으로 열고 닫을 수 있습니다.
 
-`vue-nt-modal`(https://github.com/noistommy/vue-nt-modal)을 React + TypeScript로 그대로 포팅한 버전입니다.
+`vue-nt-modal`(https://github.com/noistommy/vue-nt-modal) 을 React + TypeScript로 그대로 포팅한 버전입니다.
 동일한 클래스명(`nt-modal`, `nt-modal-container`, `nt-button` 등)과 CSS 구조를 사용하므로
 기존 `nt-modal.scss` 스타일이나 커스텀 테마를 그대로 재사용할 수 있습니다.
 

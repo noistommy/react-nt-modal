@@ -1,7 +1,7 @@
 {
   "name": "react-nt-modal",
   "private": false,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "dev": "vite --mode=demo",
@@ -21,15 +21,24 @@
     },
     "./nt-modal.css": "./dist/nt-modal.css"
   },
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "bugs": {
     "url": "https://github.com/noistommy/react-nt-modal/issues"
   },
   "homepage": "https://github.com/noistommy/react-nt-modal#readme",
-  "keywords": ["react", "modal", "portal", "provider"],
+  "keywords": [
+    "react",
+    "modal",
+    "portal",
+    "provider"
+  ],
   "dependencies": {
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
+    "react-transition-group": "^4.4.5",
     "sass": "^1.101.0"
   },
   "devDependencies": {
@@ -53,5 +62,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/noistommy/react-nt-modal.git"
-  }
+  },
+  "license": "MIT"
 }

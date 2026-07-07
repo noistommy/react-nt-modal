@@ -50,7 +50,6 @@ export default function TestModal({
         pText: '확인',
         result: (ok: boolean) => console.log('confirm result:', ok),
       },
-      options: {},
     })
   }
 

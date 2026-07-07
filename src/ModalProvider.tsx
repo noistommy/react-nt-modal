@@ -16,9 +16,8 @@ import './nt-modal.scss'
 
 const defaultModalOptions: ModalOptions = {
   useStack: true,
-  clickToClose: false,
-  escapeToClose: false,
-  offset: 0,
+  clickToClose: true,
+  escapeToClose: true,
 }
 
 const ModalContext = createContext<ModalContextValue | null>(null)
@@ -111,7 +110,7 @@ export function ModalProvider({ children, options = {} }: ModalProviderProps) {
  * useModal() — equivalent to `inject('$ntModal')`.
  *
  * const modal = useModal()
- * modal.show({ comp: MyComponent, props: { title: 'Hi' }, options: {} })
+ * modal.show({ comp: MyComponent, props: { title: 'Hi' }, options: {} })\
  */
 export function useModal(): ModalContextValue {
   const ctx = useContext(ModalContext)

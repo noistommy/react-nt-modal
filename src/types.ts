@@ -7,8 +7,6 @@ export interface ModalOptions {
   clickToClose: boolean
   /** Close the modal when pressing the ESC key. */
   escapeToClose: boolean
-  /** Pixel offset applied per stacked modal (visual "cascade" effect). */
-  offset: number
 }
 
 /** Props every modal content component automatically receives. */
