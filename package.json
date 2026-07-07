@@ -1,7 +1,7 @@
 {
   "name": "react-nt-modal",
   "private": false,
-  "version": "0.2.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite --mode=demo",
@@ -12,12 +12,12 @@
     "preview": "vite preview",
     "docs": "rm -rf docs && cp -rf demo/dist docs"
   },
-  "main": "./dist/nt-modal.umd.js",
+  "main": "./dist/nt-modal.es.js",
   "module": "./dist/nt-modal.es.js",
   "exports": {
     ".": {
       "import": "./dist/nt-modal.es.js",
-      "require": "./dist/nt-modal.umd.js"
+      "default": "./dist/nt-modal.es.js"
     },
     "./nt-modal.css": "./dist/nt-modal.css"
   },
@@ -35,10 +35,9 @@
     "portal",
     "provider"
   ],
-  "dependencies": {
+  "peerDependencies": {
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "react-transition-group": "^4.4.5",
     "sass": "^1.101.0"
   },
   "devDependencies": {

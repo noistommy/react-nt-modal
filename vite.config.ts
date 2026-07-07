@@ -1,26 +1,37 @@
-import { defineConfig } from 'vite'
+import { defineConfig, type UserConfig, type LibraryFormats } from 'vite'
 import { resolve } from 'path'
-import react, { reactCompilerPreset } from '@vitejs/plugin-react'
-import babel from '@rolldown/plugin-babel'
+import react from '@vitejs/plugin-react'
+
+const reactExternal = [
+  'react',
+  'react-dom',
+  'react/jsx-runtime',
+  'react/jsx-dev-runtime',
+  /^react\//,
+  /^react-dom\//,
+]
 
 
 const commonConfig = {
-  plugins: [
-    react(),
-    babel({ presets: [reactCompilerPreset()] })
-  ],
+  optimizeDeps: {
+    include: ['react/jsx-runtime'],
+  },
+  plugins: [react()],
 }
 
-const libConfig = {
+const libFormats: LibraryFormats[] = ['es']
+
+const libConfig: UserConfig = {
   ...commonConfig,
   build: {
     lib: {
       entry: resolve(__dirname, './src'),
       name: 'nt-modal',
-      fileName: (format:any) => `nt-modal.${format}.js`
+      formats: libFormats,
+      fileName: (format) => `nt-modal.${format}.js`
     },
     rollupOptions: {
-      external: ["react", "react-dom"],
+      external: reactExternal,
       output: {
         globals: {
           react: "React",
@@ -36,7 +47,7 @@ const libConfig = {
   }
 }
 
-const demoConfig = {
+const demoConfig: UserConfig = {
   ...commonConfig,
   root: "./demo",
   base: process.env.NODE_ENV === 'production' ? '/react-nt-modal/' : '/',

@@ -53,7 +53,9 @@ function Header() {
           <div className="main-title hero bolder">
             NT Modal
           </div>
-          <div className="sub-title">A simple and flexible modal component for react</div>
+          <div className="sub-title">A simple and flexible modal component for 
+            <span className="be-tag label lightblue ml-2">React</span>
+          </div>
         </div>
       </div>
     </header>

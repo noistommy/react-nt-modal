@@ -1,5 +1,5 @@
-import { useModal } from '../../src/index.js'
 import { useState } from 'react'
+import { useModal } from '../../src/index.js'
 import type { ModalContentProps } from '../../src/index.js'
 import style from './TestModal.module.scss'
 const LOREM =
