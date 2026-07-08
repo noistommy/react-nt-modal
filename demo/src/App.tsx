@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { ModalProvider, useModal } from '../../src/index.ts'
 import TestModal from './TestModal.tsx'
 
+import Cabiner from './NTCabinet/Cabinet.tsx'
+
 function Header() {
 
   const themeValue = sessionStorage.getItem('theme-mode') as 'light' | 'dark' | null
@@ -61,6 +63,7 @@ function Header() {
     </header>
   )
 }
+
 function Demo() {
   const { show } = useModal()
   const [stack, setStack] = useState(true)
@@ -86,7 +89,7 @@ function Demo() {
   }
 
   return (
-    <div>
+    <div className="pb-10" style={{maxWidth: '780px', margin: '0 auto'}}>
       <div className="be-segment align-center">
         <button className="be-button primary" onClick={showModal}>Show Modal</button>
         <button className="be-button yellow" onClick={showConfirm}>Show Confirm</button>
@@ -179,6 +182,7 @@ export default function App() {
     <ModalProvider options={{ useStack: true, clickToClose: false, escapeToClose: false }}>
       <Header />
       <Demo />
+      <Cabiner />
     </ModalProvider>
   )
 }

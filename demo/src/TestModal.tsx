@@ -32,7 +32,7 @@ export default function TestModal({
       comp: TestModal,
       props: {
         title: 'New Modal',
-        description: LOREM,
+        description: LOREM.repeat(randomCount()),
         pText: 'Save',
         useHeader: h,
         useStack,
@@ -52,6 +52,8 @@ export default function TestModal({
       },
     })
   }
+
+  const randomCount = () => (Math.floor(Math.random() * 5) + 1)
 
   return (
     <div className={`${style.modal} modal`}>
