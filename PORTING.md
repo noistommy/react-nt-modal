@@ -6,10 +6,6 @@
 
 ## 설치
 
-```
-npm install react react-dom
-npm install -D typescript @types/react @types/react-dom
-```
 (별도 런타임 의존성 없음 — mitt 이벤트버스는 React Context/state로 대체했습니다)
 
 CSS를 번들러 없이 TS로만 typecheck 하는 경우, `src/env.d.ts`의
@@ -120,7 +116,7 @@ react-nt-modal/
 │   ├── nt-modal.css        # 원본 scss를 포팅한 스타일
 │   ├── env.d.ts            # `*.css` 모듈 선언 (번들러 없이 typecheck 시 필요)
 │   └── index.ts            # barrel export (타입 re-export 포함)
-└── example/
+└── demo/
     ├── App.tsx             # 데모 (원본 HelloWorld.vue 대응)
     └── TestModal.tsx       # 예시 컨텐츠 컴포넌트 (원본 TestModal.vue 대응)
 ```

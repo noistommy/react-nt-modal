@@ -28,7 +28,7 @@ function Cabiner () {
               </div>
               <div className="be-button compact icon">
                 <i className="xi-home" />
-                <a className="link" href="/" target="_blank"></a>
+                <a className="link" href="https://nt-cabinet.vercel.app/" target="_blank"></a>
               </div>
             </div>
           </div>
