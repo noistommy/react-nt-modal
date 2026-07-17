@@ -1,0 +1,27 @@
+# react-nt-modal
+
+> React용 모달 시스템 모듈. React Portal을 활용해 애플리케이션 DOM 최상위 레이어에 사용자 지정 컴포넌트를 렌더링하여, 내부 레이어(z-index 등)의 영향을 받지 않고 애플리케이션 어디서든 최상위 레이어에 모달을 표시할 수 있도록 하는 전역 모달 라이브러리입니다.
+
+기본 구조(헤더, 닫기 버튼, 기본 버튼)를 제공하며, 사용자는 모달 컨텐츠 부분만 컴포넌트로 구현하여 import하면 됩니다. 내부에 confirm 처리가 가능한 컴포넌트도 포함되어 있어 간단하게 confirm 모달을 표시할 수 있습니다. 배경 클릭(clickToClose) 또는 ESC 키(escapeToClose)로 닫기 옵션을 지정할 수 있고, 모달 내부에서 다른 모달을 호출하는 스택 방식(useStack)도 지원하여 여러 모달을 순차적으로 열고 닫을 수 있습니다.
+
+`vue-nt-modal`(https://github.com/noistommy/vue-nt-modal)을 React + TypeScript로 그대로 포팅한 버전으로, 동일한 클래스명(`nt-modal`, `nt-modal-container`, `nt-button` 등)과 CSS 구조를 사용하여 기존 `nt-modal.scss` 스타일이나 커스텀 테마를 그대로 재사용할 수 있습니다.
+
+- 언어/기술 스택: TypeScript, SCSS, Vite
+- 설치: `npm install react-nt-modal`
+- 주요 API: `ModalProvider`, `useModal` (`show`, `close`), `ModalContentProps`
+
+## Docs
+
+- [README](https://github.com/noistommy/react-nt-modal/blob/main/README.md): 설치, 사용법(Provider 설정, 모달 열기/닫기), Properties(useStack, clickToClose, escapeToClose) 설명
+- [PORTING.md](https://github.com/noistommy/react-nt-modal/blob/main/PORTING.md): vue-nt-modal에서 React + TypeScript로의 포팅 관련 문서
+- [Demo](https://noistommy.github.io/react-nt-modal): 실제 동작을 확인할 수 있는 데모 페이지 (Vite 기반 SPA)
+
+## Source
+
+- [GitHub Repository](https://github.com/noistommy/react-nt-modal): 소스 코드 (src/, demo/, docs/ 디렉토리 포함)
+- [vue-nt-modal](https://github.com/noistommy/vue-nt-modal): 원본 Vue 버전 (포팅 기준 프로젝트)
+
+## Optional
+
+- [Releases](https://github.com/noistommy/react-nt-modal/releases): 현재 게시된 릴리스 없음
+- [Issues](https://github.com/noistommy/react-nt-modal/issues): 버그 리포트 및 기능 요청
