@@ -1,7 +1,8 @@
 {
   "name": "react-nt-modal",
+  "description": "A simple and flexible modal component for React",
   "private": false,
-  "version": "1.1.0",
+  "version": "1.3.0",
   "type": "module",
   "scripts": {
     "dev": "vite --mode=demo",
@@ -28,7 +29,7 @@
   "bugs": {
     "url": "https://github.com/noistommy/react-nt-modal/issues"
   },
-  "homepage": "https://github.com/noistommy/react-nt-modal#readme",
+  "homepage": "https://noistommy.github.io/react-nt-modal",
   "keywords": [
     "react",
     "modal",
