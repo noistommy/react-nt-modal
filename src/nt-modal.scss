@@ -43,6 +43,7 @@ body .nt-modals {
         background-color: var(--bgc);
         // background-color: inherit;
         // color: inherit;
+        animation: slideDownFadeIn 0.3s ease-in-out;
         .modal-header {
           position: relative;
           padding: 8px 12px;
@@ -176,4 +177,36 @@ body .nt-modals {
       }
     }
   } 
+}
+
+@keyframes slideUpFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slideDownFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

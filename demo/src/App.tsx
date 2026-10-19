@@ -29,14 +29,14 @@ function Header() {
       }}>
         <nav className="be flex end gap-1 p-4">
           <li>
-            <div className="be-buttons">
+            <div className="be-buttons small">
               <div className={`be-button icon ${theme === 'light' ? 'selected' : ''}`} onClick={() => setTheme('light')}><i className="xi-sun" /></div>
               <div className={`be-button icon ${theme === 'dark' ? 'selected' : ''}`} onClick={() => setTheme('dark')}><i className="xi-moon" /></div>
               <div className={`be-button icon ${theme === 'system' ? 'selected' : ''}`} onClick={() => setTheme('system')}><i className="xi-desktop" /></div>
             </div>
           </li>
           <li>
-            <div className="be-buttons">
+            <div className="be-buttons small">
               <div className="be-button icon">
                 <i className="xi-github"></i>
                 <a href="https://github.com/noistommy/react-nt-modal.git" className="link" target="_blank"></a>
@@ -50,13 +50,23 @@ function Header() {
           </li>
         </nav>
       </div>
-      <div className="wrapper">
-        <div className="greetings">
-          <div className="main-title hero bolder">
-            NT Modal
+      <div className="wrapper be flex center p-10">
+        <div className="greetings preview-modal">
+          <div className="modal-header">
+            <div className="title">NT Modal</div>
+            <div className="close-btn">
+            </div>
           </div>
-          <div className="sub-title">A simple and flexible modal component for 
-            <span className="be-tag label lightblue ml-2">React</span>
+          <div className="modal-contents">
+            <div className="main-title hero bolder">
+              NT Modal
+            </div>
+            <div className="sub-title pb-5">A simple and flexible modal component for 
+              <span className="be-tag label lightblue ml-2">React</span>
+            </div>
+          </div>
+          <div className="modal-footer be flex center">
+            <div className="be-button small">Let's start</div>
           </div>
         </div>
       </div>

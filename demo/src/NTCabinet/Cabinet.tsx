@@ -1,9 +1,26 @@
+import { PROFILE, DS, BEUI, REACT_MODULES, VUE_MODULES } from './moduleData.ts'
 import NTLogo from './img/nt-profile.svg'
-import Frog from './img/frog-profile.svg'
-import VBeui from './img/be-ui-vue.svg'
-import RBeui from './img/be-ui-react.svg'
 
-function Cabiner () {
+function Drawer ({
+  logo = '',
+  name = '',
+  link = '',
+  current = false
+}) {
+  return (
+    <a className="item p-1" href={link} target="_blank" style={current ? {pointerEvents: 'none'} : {}}>
+      {logo && (<img src={logo} alt={`${logo}'s logo`} style={{width: '20px'}} /> )}
+      <div className="item-title ml-4">{name}</div>
+      <div className="btn-set">
+        <div className="be-button icon compact">
+          {current ? 'current' : <i className="xi-link"></i>}
+        </div>
+      </div>
+    </a>
+  )
+}
+
+function Cabinet () {
   return (
     <footer className="mt-10">
       
@@ -20,15 +37,15 @@ function Cabiner () {
             <div className="be-buttons">
               <div className="be-button compact icon">
                 <i className="xi-mail" />
-                <a className="link" href="mailto:noistommy@gmail.com" target="_blank"></a>
+                <a className="link" href={PROFILE.email} target="_blank"></a>
               </div>
               <div className="be-button compact icon">
                 <i className="xi-linkedin" />
-                <a className="link" href="https://www.linkedin.com/in/minyoung-kim-noistommy" target="_blank"></a>
+                <a className="link" href={PROFILE.linkedin} target="_blank"></a>
               </div>
               <div className="be-button compact icon">
                 <i className="xi-home" />
-                <a className="link" href="https://nt-cabinet.vercel.app/" target="_blank"></a>
+                <a className="link" href={PROFILE.homepage} target="_blank"></a>
               </div>
             </div>
           </div>
@@ -38,98 +55,23 @@ function Cabiner () {
           <div className="column span-4 span-xs-12 pr-10">
             <h5 className="header gray-txt-40">Design system</h5>
             <div className="be-list">
-              <div className="item p-1">
-                <img src={Frog} alt="logo" style={{width: '20px'}} /> 
-                <div className="item-title ml-4">Frog UI</div>
-                <div className="btn-set">
-                  <div className="be-button icon compact">
-                    <i className="xi-link"></i>
-                    <a className="link" href="https://frog-ui-css.vercel.app" target="_blank"></a>
-                  </div>
-                </div>
-              </div>
+              <Drawer logo={DS.logo} name={DS.name} link={DS.link} current={DS.current} />
             </div>
             <h5 className="header gray-txt-40">UI Components</h5>
             <div className="be-list">
-              <div className="item p-1">
-                <img src={VBeui} alt="logo" style={{width: '20px'}} /> 
-                <div className="item-title ml-4">BEUI - Vue</div>
-                <div className="btn-set">
-                  <div className="be-button icon compact">
-                    <i className="xi-link"></i>
-                    <a className="link" href="https://beui.vercel.app" target="_blank"></a>
-                  </div>
-                </div>
-              </div>
-              <div className="item p-1">
-                <img src={RBeui} alt="logo" style={{width: '20px'}} /> 
-                <div className="item-title ml-4">BEUI - React</div>
-                <div className="btn-set">
-                  <div className="be-button icon compact">
-                    <i className="xi-link"></i>
-                    <a className="link"  href="https://react-be-ui.vercel.app" target="_blank"></a>
-                  </div>
-                </div>
-              </div>
+              {BEUI.map(item => <Drawer key={item.name} logo={item.logo} name={item.name} link={item.link} current={item.current} />)}
             </div>
           </div>
           <div className="column span-4 span-xs-12 pr-10">
             <h5 className="header gray-txt-40">Modules by react</h5>
             <div className="be-list">
-              <div className="item p-1">
-                <img src={NTLogo} alt="logo" style={{width: '20px'}} />
-                <div className="item-title ml-4">NT Modal</div>
-                <div className="btn-set">
-                  <div className="be-button compact round">
-                    Current
-                  </div>
-                </div>
-              </div>
-              <div className="item p-1">
-                <img src={NTLogo} alt="logo" style={{width: '20px'}} />
-                <div className="item-title ml-4">NT Toast</div>
-                <div className="btn-set">
-                  <div className="be-button icon compact">
-                    <i className="xi-link"></i>
-                    <a className="link" href="https://noistommy.github.io/react-nt-toast" target="_blank"></a>
-                  </div>
-                </div>
-              </div>
+              {REACT_MODULES.map(item => <Drawer key={item.name} logo={item.logo} name={item.name} link={item.link} current={item.current} />)}
             </div>
           </div>
           <div className="column span-4 span-xs-12 pr-10">
             <h5 className="header gray-txt-40">Modules by vue</h5>
             <div className="be-list">
-              <div className="item p-1">
-                <img src={NTLogo} alt="logo" style={{width: '20px'}} />
-                <div className="item-title ml-4">NT Modal</div>
-                <div className="btn-set">
-                  <div className="be-button icon compact">
-                    <i className="xi-link"></i>
-                    <a className="link" href="https://noistommy.github.io/vue-nt-modal" target="_blank"></a>
-                  </div>
-                </div>
-              </div>
-              <div className="item p-1">
-                <img src={NTLogo} alt="logo" style={{width: '20px'}} />
-                <div className="item-title ml-4">NT Toast</div>
-                <div className="btn-set">
-                  <div className="be-button icon compact">
-                    <i className="xi-link"></i>
-                    <a className="link" href="https://noistommy.github.io/vue-nt-toast" target="_blank"></a>
-                  </div>
-                </div>
-              </div>
-              <div className="item p-1">
-                <img src={NTLogo} alt="logo" style={{width: '20px'}} />
-                <div className="item-title ml-4">NT Tooltip</div>
-                <div className="btn-set">
-                  <div className="be-button icon compact">
-                    <i className="xi-link"></i>
-                    <a className="link" href="https://noistommy.github.io/vue-nt-tooltip" target="_blank"></a>
-                  </div>
-                </div>
-              </div>
+              {VUE_MODULES.map(item => <Drawer key={item.name} logo={item.logo} name={item.name} link={item.link} current={item.current} />)}
             </div>
           </div>
         </div>
@@ -137,11 +79,11 @@ function Cabiner () {
       <hr className="be hr" />
       <div className="copylight mt-4 be-tags attached">
         <span className="be-tag label deepblue">Copyright</span>
-        <span className="be-tag label primary-light">© 2016-present Kim Minyoung</span>
+        <span className="be-tag label primary-light">© {new Date().getFullYear()} Kim Minyoung</span>
         <span className="be-tag pointing left secondary">noistommy</span>
       </div>
     </footer>
   )
 }
 
-export default Cabiner
+export default Cabinet
