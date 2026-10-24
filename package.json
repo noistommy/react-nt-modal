@@ -63,5 +63,8 @@
     "type": "git",
     "url": "https://github.com/noistommy/react-nt-modal.git"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "nt-cabinet-component": "github:noistommy/nt-cabinet-component"
+  }
 }

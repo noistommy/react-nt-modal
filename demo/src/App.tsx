@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { ModalProvider, useModal } from '../../src/index.ts'
 import TestModal from './TestModal.tsx'
 
-import Cabiner from './NTCabinet/Cabinet.tsx'
+import {NtCabinetReact} from 'nt-cabinet-component/react'
 
 function Header() {
 
@@ -192,7 +192,7 @@ export default function App() {
     <ModalProvider options={{ useStack: true, clickToClose: false, escapeToClose: false }}>
       <Header />
       <Demo />
-      <Cabiner />
+      <NtCabinetReact module="react-nt-modal" />
     </ModalProvider>
   )
 }
